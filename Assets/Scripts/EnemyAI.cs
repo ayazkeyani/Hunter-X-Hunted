@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    //  AGGRESSIVE AI
+
     private EnemyAwareness enemyAwareness;
     private Transform playersTransform;
     private NavMeshAgent enemyNavMeshAgent;
