@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
             enemyManager.RemoveEnemy(this);
             // instantiate the pickup
             //Vector3 bodyPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            // Store the VFX on the pickup to keep blood trails
             Instantiate(bodyPickup, transform.position, transform.rotation);
             Destroy(gameObject);
         }
