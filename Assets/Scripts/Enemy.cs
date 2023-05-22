@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     private Animator spriteAnim;
     private AngleToPlayer angleToPlayer;
 
+    [SerializeField]
     private float enemyHealth = 2f;
 
     public GameObject gunHitEffect;
