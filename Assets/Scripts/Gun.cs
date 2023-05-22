@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Gun : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Gun : MonoBehaviour
     public LayerMask enemyLayerMask; // enemy
     public LayerMask raycastLayerMask; // default, enemy
     public EnemyManager enemyManager;
-
+    private VisualEffect muzzleFlash;
     // animation
     [Header("-Animation Settings-")]
     public Animator gunAnim;
@@ -34,10 +35,12 @@ public class Gun : MonoBehaviour
     private float rifleReloadTime; // stores clip length
     private void Start()
     {
+        // reference to VFX
+        muzzleFlash = GetComponentInChildren<VisualEffect>();
+        muzzleFlash.Stop();
         // get the component and update the clip lengths
         gunAnim = GetComponentInChildren<Animator>();
         UpdateAnimClipTimes();
-
         enemyManager = FindObjectOfType<EnemyManager>();
         gunTrigger = GetComponent<BoxCollider>();
         // Set the size/range of the boxCollider
@@ -59,6 +62,7 @@ public class Gun : MonoBehaviour
                 // can fire
                 currentRounds -= 1;
                 Fire();
+                muzzleFlash.Play();
                 StartCoroutine(WaitForAnimation(gunAnim, "RifleFire", rifleFireTime));
                 Debug.Log("Fire...");
             }

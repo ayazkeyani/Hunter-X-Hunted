@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
 
     public GameObject gunHitEffect;
     public GameObject bodyPickup;
+    public ParticleSystem bloodParticles;
+    //public VisualEffect blood;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +35,8 @@ public class Enemy : MonoBehaviour
             // remove from list
             enemyManager.RemoveEnemy(this);
             // instantiate the pickup
-            Vector3 bodyPos = new Vector3(transform.position.x, 0.8f, transform.position.z);
-            Instantiate(bodyPickup, bodyPos, Quaternion.Euler(0, 180, 0));
+            //Vector3 bodyPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            Instantiate(bodyPickup, transform.position, transform.rotation);
             Destroy(gameObject);
         }
 
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour
         if (gunHitEffect != null)
         {
             Instantiate(gunHitEffect, transform.position, Quaternion.identity);
+            bloodParticles.gameObject.SetActive(true);
         }
         else
         {
