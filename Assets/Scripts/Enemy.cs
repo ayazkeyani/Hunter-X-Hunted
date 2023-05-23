@@ -8,11 +8,13 @@ public class Enemy : MonoBehaviour
     private Animator spriteAnim;
     private AngleToPlayer angleToPlayer;
 
+    [SerializeField]
     private float enemyHealth = 2f;
 
     public GameObject gunHitEffect;
     public GameObject bodyPickup;
     public ParticleSystem bloodParticles;
+    public bool isHit;
     //public VisualEffect blood;
     // Start is called before the first frame update
     void Start()
@@ -36,8 +38,20 @@ public class Enemy : MonoBehaviour
             enemyManager.RemoveEnemy(this);
             // instantiate the pickup
             //Vector3 bodyPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            // Store the VFX on the pickup to keep blood trails
             Instantiate(bodyPickup, transform.position, transform.rotation);
             Destroy(gameObject);
+        }
+
+
+
+        if (isHit)
+        {
+            bloodParticles.gameObject.SetActive(true);
+        }
+        else
+        {
+            bloodParticles.gameObject.SetActive(false);
         }
 
         // any animations we call will have the correct index
@@ -48,7 +62,7 @@ public class Enemy : MonoBehaviour
         if (gunHitEffect != null)
         {
             Instantiate(gunHitEffect, transform.position, Quaternion.identity);
-            bloodParticles.gameObject.SetActive(true);
+            isHit = true;
         }
         else
         {
