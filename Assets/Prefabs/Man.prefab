@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &146757873315609235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9125982544741988419}
+  m_Layer: 7
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9125982544741988419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146757873315609235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08, y: 0.736, z: 0.412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4014948298306788294}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3084612317978344010
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,10 +250,10 @@ GameObject:
   - component: {fileID: 2434217495665791851}
   - component: {fileID: 7596684306339997916}
   - component: {fileID: 4349991657162095881}
-  - component: {fileID: 1326168507757911177}
+  - component: {fileID: 7868068092441275616}
   m_Layer: 7
   m_Name: Man
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,8 +273,9 @@ Transform:
   - {fileID: 6882686621637411587}
   - {fileID: 3448039085967194235}
   - {fileID: 8290400702208003963}
+  - {fileID: 9125982544741988419}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!136 &8100868444872720709
 CapsuleCollider:
@@ -329,8 +361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d6eccfe43dc9f4f837d3004e9ddc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHealth: 10
   gunHitEffect: {fileID: 1241478059875691521, guid: 2ca27f0443532ea4e934f01f8f429b3d, type: 3}
-  bodyPickup: {fileID: 0}
+  bodyPickup: {fileID: 4027442866830395117, guid: d34801847f26c674382126de601697c0, type: 3}
   bloodParticles: {fileID: 433970957522821113}
 --- !u!114 &7596684306339997916
 MonoBehaviour:
@@ -344,10 +377,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53760ff1ccf1cd4a81009f868fb3638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  awarenessRadius: 40
+  awarenessRadius: 20
   aggroMat: {fileID: 0}
   isAggro: 0
-  aggroDistance: 30
+  playersTransform: {fileID: 0}
+  aggroDistance: 15
 --- !u!114 &4349991657162095881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastIndex: 0
---- !u!114 &1326168507757911177
+--- !u!114 &7868068092441275616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,9 +404,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8850331422540394333}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d32ce867ffc0c4caebac62dbdf3db1, type: 3}
+  m_Script: {fileID: 11500000, guid: da0f821b63c36f4438d58d1ad3e984ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displacementDist: 2
 --- !u!1001 &6306743038210928936
 PrefabInstance:
   m_ObjectHideFlags: 0

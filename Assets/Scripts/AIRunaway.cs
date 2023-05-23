@@ -29,7 +29,7 @@ public class AIRunaway : MonoBehaviour
             Vector3 normDir = (playersTransform.position - transform.position).normalized;
 
             //normDir = Quaternion.AngleAxis(45, Vector3.up) * normDir; // Rotate at an angle away from the player
-            //normDir = Quaternion.AngleAxis(Random.Range(0,179), Vector3.up) * normDir; // move to the right
+            normDir = Quaternion.AngleAxis(Random.Range(0,179), Vector3.up) * normDir; // move to the right
             MoveToPos(transform.position - (normDir * displacementDist));
         }
         else

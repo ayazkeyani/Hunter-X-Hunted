@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public GameObject gunHitEffect;
     public GameObject bodyPickup;
     public ParticleSystem bloodParticles;
+    public bool isHit;
     //public VisualEffect blood;
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,17 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
+
+
+        if (isHit)
+        {
+            bloodParticles.gameObject.SetActive(true);
+        }
+        else
+        {
+            bloodParticles.gameObject.SetActive(false);
+        }
+
         // any animations we call will have the correct index
     }
 
@@ -50,7 +62,7 @@ public class Enemy : MonoBehaviour
         if (gunHitEffect != null)
         {
             Instantiate(gunHitEffect, transform.position, Quaternion.identity);
-            bloodParticles.gameObject.SetActive(true);
+            isHit = true;
         }
         else
         {
